@@ -17,7 +17,7 @@
   },
   {
     "ContainingType": "CodePulse.API.Controllers.BlogPostController",
-    "Method": "GetAllCategories",
+    "Method": "GetAllBlogPosts",
     "RelativePath": "api/BlogPost",
     "HttpMethod": "GET",
     "IsController": true,
@@ -27,7 +27,7 @@
   },
   {
     "ContainingType": "CodePulse.API.Controllers.BlogPostController",
-    "Method": "GetCategoryById",
+    "Method": "GetBlogPostById",
     "RelativePath": "api/BlogPost/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -43,7 +43,7 @@
   },
   {
     "ContainingType": "CodePulse.API.Controllers.BlogPostController",
-    "Method": "UpdateCategory",
+    "Method": "UpdateBlogPost",
     "RelativePath": "api/BlogPost/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -64,7 +64,7 @@
   },
   {
     "ContainingType": "CodePulse.API.Controllers.BlogPostController",
-    "Method": "DeleteCategory",
+    "Method": "DeleteBlogPost",
     "RelativePath": "api/BlogPost/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -73,6 +73,22 @@
       {
         "Name": "id",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CodePulse.API.Controllers.BlogPostController",
+    "Method": "GetBlogPostByUrlHandle",
+    "RelativePath": "api/BlogPost/{urlHandle}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "urlHandle",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

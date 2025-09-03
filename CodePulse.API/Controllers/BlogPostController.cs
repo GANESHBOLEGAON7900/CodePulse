@@ -2,7 +2,6 @@
 using CodePulse.API.Models.Domain;
 using CodePulse.API.Models.DTOs;
 using CodePulse.API.Models.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodePulse.API.Controllers
@@ -33,7 +32,7 @@ namespace CodePulse.API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetAllBlogPosts()
         {
             var models = await _blogPostRepository.GetAllBlogPosts();
            
@@ -41,8 +40,8 @@ namespace CodePulse.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetCategoryById([FromRoute] Guid id)
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> GetBlogPostById([FromRoute] Guid id)
         {
             var model = await _blogPostRepository.GetBlogPostById(id);
             if (model == null)
@@ -52,9 +51,22 @@ namespace CodePulse.API.Controllers
             return Ok(_mapper.Map<BlogPostDTO>(model));
         }
 
+
+
+        [HttpGet]
+        [Route("{urlHandle}")]
+        public async Task<IActionResult> GetBlogPostByUrlHandle([FromRoute] string urlHandle)
+        {
+            var model = await _blogPostRepository.GetBlogPostByUrlHandle(urlHandle);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<BlogPostDTO>(model));
+        }
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateCategory([FromRoute] Guid id, [FromBody] UpdateBlogPostRequestDTO request)
+        public async Task<IActionResult> UpdateBlogPost([FromRoute] Guid id, [FromBody] UpdateBlogPostRequestDTO request)
         {
             // var category = _mapper.Map<BlogPost>(request);
             var blogPost = new BlogPost()
@@ -109,7 +121,7 @@ namespace CodePulse.API.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteBlogPost([FromRoute] Guid id)
         {
             var res = await _blogPostRepository.DeleteBlogPost(id);
             if (res == null)

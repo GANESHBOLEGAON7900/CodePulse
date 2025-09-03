@@ -6,6 +6,8 @@ namespace CodePulse.API.Models.Repositories
     {
         Task<BlogPost> CreateBlogPost(BlogPost model);
         Task<BlogPost?> GetBlogPostById(Guid id);
+        Task<BlogPost?> GetBlogPostByUrlHandle(string urlHandle);
+
         Task<List<BlogPost>> GetAllBlogPosts();
         Task<BlogPost?> UpdateBlogPost(Guid id, BlogPost model);
         Task<BlogPost?> DeleteBlogPost(Guid id);

@@ -31,6 +31,15 @@ namespace CodePulse.API.Models.Repositories
             }
             return model;
         }
+        public async Task<BlogPost?> GetBlogPostByUrlHandle(string urlHandle)
+        {
+            var model = await _dbContext.BlogPosts.Include(x => x.Categories).FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
+            if (model == null)
+            {
+                return null;
+            }
+            return model;
+        }
 
         public async Task<List<BlogPost>> GetAllBlogPosts()
         {
@@ -75,5 +84,7 @@ namespace CodePulse.API.Models.Repositories
 
             return model;
         }
+
+      
     }
 }
